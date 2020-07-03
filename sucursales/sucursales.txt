@@ -1,0 +1,11 @@
+Aguascalientes, 192.168.191.0
+Ameca, 192.168.192.0
+Apatzingan, 192.168.193.0
+Autlan, 192.168.204.0
+CD Guzman, 192.168.206.0
+Propietario, 192.168.0.0
+Nueva Sucursal, 192.168.27.0
+Culiacan, 192.168.128.0
+Guadalajara, 192.168.30.0
+Ajijic, 192.168.1.0
+Atotonilco, 192.168.2.0
