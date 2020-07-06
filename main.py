@@ -1,7 +1,7 @@
 #!/usr/bin/env  python3
 # -*- coding: utf-8 -*-
 """
-This script is create for ping IPv4.
+This script is reboot IPv4 phones.
 
 It seems that it has to have THIS docstring with a summary line, a blank line
 and sume more text like here. Wow.
