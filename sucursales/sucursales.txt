@@ -9,3 +9,5 @@ Culiacan, 192.168.128.0
 Guadalajara, 192.168.30.0
 Ajijic, 192.168.1.0
 Atotonilco, 192.168.2.0
+Chapala, 192.168.3.0
+Ranchito Nuevo, 192.168.4.0

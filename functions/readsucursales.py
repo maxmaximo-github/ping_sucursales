@@ -6,7 +6,7 @@ __license__ = "GPL"
 __version__ = "1.0.2"
 __maintainer__ = "Cesar Rodriguez"
 __email__ = "cesarrodriguez@gmail.com"
-__status__ = "Develop"
+__status__ = "Development"
 
 
 import os

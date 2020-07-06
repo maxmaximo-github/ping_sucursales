@@ -6,8 +6,7 @@ __license__ = "GPL"
 __version__ = "1.0.2"
 __maintainer__ = "Cesar Rodriguez"
 __email__ = "cesarrodriguez@gmail.com"
-__status__ = "Develop"
-
+__status__ = "Development"
 
 
 color_reset = "\x1b[0m"
@@ -21,9 +20,15 @@ yellow = "\x1b[00;00;02;033m"
 
 
 def menu_sucursales(sucursales_list):
+    """
+    Buenos dias.
 
+    Las cosas como son.
+    """
     print(f"{green}{'='*45}{color_reset}")
-    print(f"{' '*4}{red}{'SUCURSALES':^20}   {blue}{'PREFIJOS':^20}{color_reset}")
+    print(
+        f"{' '*4}{red}{'SUCURSALES':^20} "
+        + f"  {blue}{'PREFIJOS':^20}{color_reset}")
     print(f"{green}{'='*45}{color_reset}")
     count = 0
     for sucursal in sucursales_list:
