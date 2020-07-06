@@ -20,13 +20,19 @@ import os
 from netmiko import Netmiko
 from netmiko.ssh_exception import NetMikoTimeoutException
 from netmiko.ssh_exception import NetMikoAuthenticationException
+from paramiko.ssh_exception import SSHException
 
 
-# Colores para impresion de pantalla.
+# Colores para impresion en pantalla.
 color_reset = "\x1b[0m"
 red = "\x1b[00;00;1;031m"
-green = "\x1b[00;00;1;092m"
+red_blink = "\x1b[00;00;05;031m"
+magent = "\x1b[00;00;02;033m"
+magent_blink = "\x1b[00;00;02;033m"
 blue = "\x1b[00;00;1;034m"
+blue_blink = "\x1b[00;00;5;034m"
+green = "\x1b[00;00;01;092m"
+green_blink = "\x1b[00;00;5;092m"
 
 
 def ssh_alive(ip):
@@ -72,9 +78,14 @@ def ssh_alive(ip):
     except NetMikoTimeoutException:
         # print(error)
         print(
-            f"\t{red}El dispositivo {blue}{ip} "
-            + f"{red}no esta {blue}disponible.{color_reset}")
+            f"\t{red}El dispositivo {green}{ip} "
+            + f"{red}no esta {green}disponible.{color_reset}")
 
     except NetMikoAuthenticationException:
         print(
-            f"\t{red}Contraseña {blue}incorrecta {red}para {blue}{ip}")
+            f"\t{red}Contraseña {green}incorrecta {red}para {green}{ip}")
+
+    except SSHException:
+        print(
+            f"{green}Canal cerrado, {red}ocurrio un error en la conexion"
+            + f" con {green}{ip}{color_reset}")
