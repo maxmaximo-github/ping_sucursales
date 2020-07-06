@@ -25,6 +25,7 @@ from functions.pingpong import ping_pong
 from functions.readfiles import read_files
 from functions.readsucursales import sucursales
 from functions.remover import remover_files
+from functions.restartphone import restart_phone
 from functions.sshalive import ssh_alive
 from functions.threadconfig import thread_config
 
@@ -71,14 +72,19 @@ def main():
             dictionary_sucursal = index
 
             for (key, value) in dictionary_sucursal.items():
-                print(key, len(value))
+                # print(key, len(value))
+
+                # Impresion de formato para la terminal
                 print(f" {green}{'='*66}{color_reset}")
                 print(
                     f" {blue}Realizando {green}PING {blue}a los Telefonos"
                     + f" de {green}'{key}'{color_reset}")
                 print(f" {green}{'='*66}{color_reset}")
-
+                # Llamada a la funcion "thread_config" para la creacion de los
+                # hilos y determinar que dispositivos son alcanzados por
+                # ping
                 thread_config(ping_pong, value)
+                # Impresion de formato para la terminal.
                 print(f" {green}{'='*66}{color_reset}\n")
 
                 # Leer los archivos de los dispositivos que se encuentran
@@ -88,17 +94,37 @@ def main():
                 # Remover archivos temporales con las IP
                 remover_files()
 
+                # Impresion de formato para la terminal
                 print(f"\n {green}{'='*66}{color_reset} ")
                 print(
                     f" {red}{'*'*19}{blue} Probando conectividad SSH "
                     + f"{red}{'*'*19}{color_reset}")
                 print(f" {green}{'='*66}{color_reset} ")
-
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por SSH
                 thread_config(ssh_alive, devices_ssh)
-
+                # Impresion de formato para la terminal
                 print(f" {green}{'='*66}{color_reset}\n")
+
+                # Leer los archivos de los dispositivos que se encuentran
+                # activos SSH.
+                devices_configuration = read_files()
+
+                # Impresion de formato para la terminal
+                print(f"\n {green}{'='*66}{color_reset} ")
+                print(
+                    f" {red}{'*'*19}{blue} Probando Reiniciando Telefonos "
+                    + f"{red}{'*'*19}{color_reset}")
+                print(f" {green}{'='*66}{color_reset} ")
+                # Llamada a la funcion "thread_config" para la creacion de los
+                # hilos y determinar que dispositivos son alcanzados por SSH
+                thread_config(restart_phone, devices_configuration)
+                # Impresion de formato para la terminal
+                print(f" {green}{'='*66}{color_reset}\n")
+
+                # Limpiar archivos de la carpeta temporal para la siguiente
+                # ejecution.
+                remover_files()
 
     except UnboundLocalError:
         print(f"{green}{'Fin del programa.':^40}{color_reset}\n\n")
