@@ -32,7 +32,7 @@ green = "\x1b[00;00;01;092m"
 green_blink = "\x1b[00;00;5;092m"
 
 
-def pingpong(ip):
+def ping_pong(ip):
     """
     Funcion para testear IPv4.
 
@@ -50,7 +50,7 @@ def pingpong(ip):
 
     if reply == 0:
         print(
-            f" {red}El dispositivo {blue}{ip} {red}esta vivo. "
+            f" {red}El Telefono IPv4 {blue}{ip} {red}esta vivo. "
             + f"{blue}({red}Ping Success!!!!{blue}){color_reset}")
 
         directory = os.getcwd()
