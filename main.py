@@ -85,7 +85,20 @@ def main():
                 # activos.
                 devices_ssh = read_files()
 
+                # Remover archivos temporales con las IP
+                remover_files()
 
+                print(f"\n {green}{'='*66}{color_reset} ")
+                print(
+                    f" {red}{'*'*19}{blue} Probando conectividad SSH "
+                    + f"{red}{'*'*19}{color_reset}")
+                print(f" {green}{'='*66}{color_reset} ")
+
+                # Llamada a la funcion "thread_config" para la creacion de los
+                # hilos y determinar que dispositivos son alcanzados por SSH
+                thread_config(ssh_alive, devices_ssh)
+
+                print(f" {green}{'='*66}{color_reset}\n")
 
     except UnboundLocalError:
         print(f"{green}{'Fin del programa.':^40}{color_reset}\n\n")
