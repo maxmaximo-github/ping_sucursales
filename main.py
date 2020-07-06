@@ -16,15 +16,20 @@ __email__ = "cesarrodriguez@gmail.com"
 __status__ = "Development"
 
 
+from functions.createtmpfolder import create_tmpfolder
 from functions.cleanscreen import clean_screen
 from functions.dictionaryprefix import dictionary_prefix
 from functions.createprefix import create_prefix
 from functions.menusucursales import menu_sucursales
-from functions.pingpong import pingpong
+from functions.pingpong import ping_pong
+from functions.readfiles import read_files
 from functions.readsucursales import sucursales
+from functions.remover import remover_files
+from functions.sshalive import ssh_alive
 from functions.threadconfig import thread_config
 
 
+# Colores para impresion en pantalla.
 color_reset = "\x1b[0m"
 red = "\x1b[00;00;1;031m"
 red_blink = "\x1b[00;00;05;031m"
@@ -45,6 +50,10 @@ def main():
     Si el resultado es exitoso se guarda en un archivo de texto, de no ser asi
     sino solo se anuncia que no tiene conectividad.
     """
+    # Verificar si existe carpeta tmp dentro del proyecto
+    create_tmpfolder()
+
+    # Limpiar pantalla
     clean_screen()
     sucursales_list = sucursales()
 
@@ -65,12 +74,18 @@ def main():
                 print(key, len(value))
                 print(f" {green}{'='*66}{color_reset}")
                 print(
-                    f" {blue}Realizando {green}PING {blue}a los dispositivos"
+                    f" {blue}Realizando {green}PING {blue}a los Telefonos"
                     + f" de {green}'{key}'{color_reset}")
                 print(f" {green}{'='*66}{color_reset}")
 
-                thread_config(pingpong, value)
+                thread_config(ping_pong, value)
                 print(f" {green}{'='*66}{color_reset}\n")
+
+                # Leer los archivos de los dispositivos que se encuentran
+                # activos.
+                devices_ssh = read_files()
+
+
 
     except UnboundLocalError:
         print(f"{green}{'Fin del programa.':^40}{color_reset}\n\n")
