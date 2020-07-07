@@ -16,6 +16,7 @@ __email__ = "cesarrodriguez@gmail.com"
 __status__ = "Development"
 
 
+import time
 from functions.createtmpfolder import create_tmpfolder
 from functions.cleanscreen import clean_screen
 from functions.dictionaryprefix import dictionary_prefix
@@ -56,8 +57,11 @@ def main():
 
     # Limpiar pantalla
     clean_screen()
+
+    # Obtener esctructura de datos para el menu
     sucursales_list = sucursales()
 
+    # Impresion de pantalla el menu con sus sucursales y prefijos.
     menu_sucursales(sucursales_list)
 
     try:
@@ -125,6 +129,42 @@ def main():
                 # Limpiar archivos de la carpeta temporal para la siguiente
                 # ejecution.
                 remover_files()
+
+        # Impresion de formato para la terminal.
+        print(f" {green}{'='*66}{color_reset}\n")
+        print(
+            f" {blue}Esperando que {green}reinicien los {blue}a los Telefonos"
+            + f"{color_reset}")
+        # Impresion de formato para la terminal.
+        print(f" {green}{'='*66}{color_reset}\n")
+
+        # Tiempo de espera para realizacion pruebas de conectividad.
+        time.sleep(120)
+
+        # Realizar ping nuevamente para determinar que los telefonos
+        # Ya son disponibles
+        for index in dictionary_prefijos:
+            dictionary_sucursal = index
+
+            for (key, value) in dictionary_sucursal.items():
+                # print(key, len(value))
+
+                # Impresion de formato para la terminal
+                print(f" {green}{'='*66}{color_reset}")
+                print(
+                    f" {blue}Realizando {green}PING {blue}a los Telefonos"
+                    + f" de {green}'{key}'{color_reset}")
+                print(f" {green}{'='*66}{color_reset}")
+                # Llamada a la funcion "thread_config" para la creacion de los
+                # hilos y determinar que dispositivos son alcanzados por
+                # ping
+                thread_config(ping_pong, value)
+                # Impresion de formato para la terminal.
+                print(f" {green}{'='*66}{color_reset}\n")
+
+    except KeyboardInterrupt:
+        print(
+            f"\n\n{red}Has detenido el {green}programa {red}con el teclado.")
 
     except UnboundLocalError:
         print(f"{green}{'Fin del programa.':^40}{color_reset}\n\n")
