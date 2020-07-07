@@ -43,7 +43,7 @@ def create_prefix():
         # Usuario ingresa los valore de las sucursales.
         print(f"{green}{'='*45}")
         sucursales_usuario = input(
-            f"{red}Ingresa {green}No. {blue}de las {red}sucursales: {green}")
+            f"  {red}Ingresa {green}No. {blue}de las {red}sucursales: {green}")
         print(f"{color_reset}")
         # print(sucursales_usuario)
         # print(type(sucursales_usuario))
