@@ -71,8 +71,3 @@ def ping_pong(ip):
             f = open(file=f"{directory}/tmp/{ip}", mode="w")
             f.write(f"{ip}")
             f.close()
-    # else:
-    #    print(
-    #        f" {red_blink}El Telefono IPv4 con {green}{ip} "
-    #        + f"{red_blink}no esta disponible."
-    #        + f" {blue}({green}Ping Fail!!!!{blue}){color_reset}")
