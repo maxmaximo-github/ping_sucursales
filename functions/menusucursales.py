@@ -44,10 +44,10 @@ def menu_sucursales(sucursales_list):
     print(
         f"{red}Si deseas {blue}reiniciar {red}varias sucursales separa por "
         + f"{blue}coma {green}','{color_reset}")
-    print(f"{blue}Example:{green} 0, 3, 5{color_reset}\n")
+    print(f"\t{blue}Example:{green} 0, 3, 5{color_reset}\n")
     print(
         f"{red}Si deseas un {blue}rango {red}utiliza {green}'-'{color_reset}")
-    print(f"{blue}Example:{green} 1-3, 5{color_reset}\n")
+    print(f"\t{blue}Example:{green} 1-3, 5{color_reset}\n")
     print(f"{red}Para {blue}Todas {red}las sucursales {green}'Inicial-Final'")
     fin = len(sucursales_list) - 1
-    print(f"{blue}Example: {green}0-{fin}{color_reset}\n")
+    print(f"\t{blue}Example: {green}0-{fin}{color_reset}\n")
