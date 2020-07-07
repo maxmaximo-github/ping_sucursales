@@ -50,16 +50,16 @@ def ping_pong(ip):
 
     if reply == 0:
         print(
-            f" {red}El Telefono IPv4 {blue}{ip} {red}esta vivo. "
-            + f"{blue}({red}Ping Success!!!!{blue}){color_reset}")
+            f"    {red}El Telefono {green}IPv4 {blue}{ip} {red}esta vivo. "
+            + f"{blue}({green_blink}Ping Success!!!!{blue}){color_reset}")
 
         directory = os.getcwd()
         f = open(file=f"{directory}/tmp/{ip}", mode="w")
         f.write(f"{ip}")
         f.close()
 
-    else:
-        print(
-            f" {red_blink}El dispositivo {green}{ip} "
-            + f"{red_blink}no esta disponible."
-            + f" {blue}({green}Ping Fail!!!!{blue}){color_reset}")
+    # else:
+    #    print(
+    #        f" {red_blink}El Telefono IPv4 con {green}{ip} "
+    #        + f"{red_blink}no esta disponible."
+    #        + f" {blue}({green}Ping Fail!!!!{blue}){color_reset}")
