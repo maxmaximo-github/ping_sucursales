@@ -177,8 +177,6 @@ def main():
                 print(f"{red}{'*'*55:^66}{color_reset} ")
                 print(f" {green}{'='*66}{color_reset}")
 
-        print("Hola Mundo")
-
     except KeyboardInterrupt:
         print(
             f"\n\n\t{red}Has detenido el {green}programa {red}con el teclado.")
