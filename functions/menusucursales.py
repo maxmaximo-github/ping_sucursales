@@ -1,13 +1,19 @@
 #!/usr/bin/env  python3
+# -*- coding: utf-8 -*-
+"""
+This script is create for ping IPv4.
+
+It seems that it has to have THIS docstring with a summary line, a blank line
+and sume more text like here. Wow.
+"""
 __author__ = "Cesar Rodriguez"
-__copyright__ = "Copyright 2020, Reboot IPv4 Phones"
+__copyright__ = "Copyright 2020"
 __credits__ = ["Cesar Rodriguez"]
 __license__ = "GPL"
-__version__ = "1.0.2"
+__version__ = "1.5.2"
 __maintainer__ = "Cesar Rodriguez"
-__email__ = "cesarrodriguez@gmail.com"
+__email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
-
 
 color_reset = "\x1b[0m"
 red = "\x1b[00;00;1;031m"

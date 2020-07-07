@@ -7,12 +7,12 @@ It seems that it has to have THIS docstring with a summary line, a blank line
 and sume more text like here. Wow.
 """
 __author__ = "Cesar Rodriguez"
-__copyright__ = "Copyright 2020, Reboot IPv4 Phones"
+__copyright__ = "Copyright 2020"
 __credits__ = ["Cesar Rodriguez"]
 __license__ = "GPL"
-__version__ = "1.0.2"
+__version__ = "1.5.2"
 __maintainer__ = "Cesar Rodriguez"
-__email__ = "cesarrodriguez@gmail.com"
+__email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
 
 
@@ -64,14 +64,14 @@ def dictionary_prefix(creacion_prefijos, sucursales_list):
             if no_sucursal > len(sucursales_list)-1:
                 sucursales_inexistentes.append(no_sucursal)
 
-        print(f"{green}{'='*60}")
-        print(f"{red_blink} {('Precaucion '*5):^40}")
-        print(f"{green}{'='*60}")
+        print(f" {green}{'='*66}")
+        print(f" {red_blink} {('Precaucion '*6):^40}")
+        print(f" {green}{'='*66}")
         print(
-            f"{red}El programa {green}NO REALIZARA ACTIVIDAD"
+            f" {red}El programa {green}NO REALIZARA ACTIVIDAD"
             + f" {red}en las siguientes sucursales")
-        print(f"{red}debido a lo siguiente:{color_reset} \n")
-        print(f"{red}Las siguientes sucursales no existen: ")
+        print(f" {red}debido a lo siguiente:{color_reset} \n")
+        print(f" {red}Las siguientes sucursales no existen: ")
         print(f"\t\t{green}{sucursales_inexistentes}{color_reset}\n")
 
     return dictionary_prefijos

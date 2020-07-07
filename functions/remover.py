@@ -7,13 +7,13 @@ It seems that it has to have THIS docstring with a summary line, a blank line
 and sume more text like here. Wow.
 """
 __author__ = "Cesar Rodriguez"
-__copyright__ = "Copyright 2020, Reboot IPv4 Phones"
+__copyright__ = "Copyright 2020"
 __credits__ = ["Cesar Rodriguez"]
 __license__ = "GPL"
-__version__ = "1.0.2"
+__version__ = "1.5.2"
 __maintainer__ = "Cesar Rodriguez"
-__email__ = "cesarrodriguez@gmail.com"
-__status__ = "Develop"
+__email__ = "cesarrodriguezpadilla@gmail.com"
+__status__ = "Development"
 
 
 import os

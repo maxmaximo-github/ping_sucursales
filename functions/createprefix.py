@@ -7,14 +7,13 @@ It seems that it has to have THIS docstring with a summary line, a blank line
 and sume more text like here. Wow.
 """
 __author__ = "Cesar Rodriguez"
-__copyright__ = "Copyright 2020, Reboot IPv4 Phones"
+__copyright__ = "Copyright 2020"
 __credits__ = ["Cesar Rodriguez"]
 __license__ = "GPL"
-__version__ = "1.0.2"
+__version__ = "1.5.2"
 __maintainer__ = "Cesar Rodriguez"
-__email__ = "cesarrodriguez@gmail.com"
+__email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
-
 
 from functions.cleanscreen import clean_screen
 
@@ -112,15 +111,15 @@ def create_prefix():
             if not valor.isnumeric():
                 error.append(valor)
 
-        print(f"\n{blue}{'='*60}")
-        print(f"{red_blink} {('Error '*10):^40}")
-        print(f"{blue}{'='*60}\n")
+        print(f" {blue}{'='*66}")
+        print(f"  {red_blink} {('Error '*10):^40}")
+        print(f" {blue}{'='*66}\n")
         print(
-            f"{red}El programa {green}NO PUEDE CONTINUAR"
+            f" {red}El programa {green}NO PUEDE CONTINUAR"
             + f" {red}debido a lo siguiente:{color_reset} \n")
-        print(f"{red}Posiblemente ingresaste {green}'DATOS NO VALIDOS'.\n")
-        print(f"{red}Tus datos que causan error son: ")
-        print(f" {green}{error}{color_reset}\n")
+        print(f" {red}Posiblemente ingresaste {green}'DATOS NO VALIDOS'.\n")
+        print(f" {red}Tus datos que causan error son: ")
+        print(f"     {green}{error}{color_reset}\n")
 
     except KeyboardInterrupt:
         print(
