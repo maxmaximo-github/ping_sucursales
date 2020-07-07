@@ -36,7 +36,7 @@ color_reset = "\x1b[0m"
 red = "\x1b[00;00;1;031m"
 red_blink = "\x1b[00;00;05;031m"
 magent = "\x1b[00;00;02;033m"
-magent_blink = "\x1b[00;00;02;033m"
+magent_blink = "\x1b[00;00;05;033m"
 blue = "\x1b[00;00;1;034m"
 blue_blink = "\x1b[00;00;5;034m"
 green = "\x1b[00;00;01;092m"
@@ -142,7 +142,7 @@ def main():
         print(
             f"  {red}Esperando {green}reinicio {red}para comprobar"
             + f" la {green}conectividad {red}con "
-            + f"{green}Telefonos.{green_blink}")
+            + f"{green}Telefonos.{magent_blink}")
 
         # Llamada a la funcion count_down y pasarle argumentos con valores
         # de ejemplo minutos=2 y segundo=0

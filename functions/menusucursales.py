@@ -31,29 +31,29 @@ def menu_sucursales(sucursales_list):
 
     Las cosas como son.
     """
-    print(f"{green}{'='*45}{color_reset}")
+    print(f" {green}{'='*45}{color_reset}")
     print(
         f"{' '*4}{red}{'SUCURSALES':^20} "
         + f"  {blue}{'PREFIJOS':^20}{color_reset}")
-    print(f"{green}{'='*45}{color_reset}")
+    print(f" {green}{'='*45}{color_reset}")
     count = 0
     for sucursal in sucursales_list:
         print(
-            f"{yellow}{count}) {red}{sucursal['Sucursal']:^20} {green}==>"
+            f"  {yellow}{count}) {red}{sucursal['Sucursal']:^20} {green}==>"
             + f"{blue}{sucursal['Prefijo']:^20}")
         count += 1
     print(
-        f"{yellow}{'-'}) {red}{'Todas':^20} {green}==>"
+        f"  {yellow}{'-'}) {red}{'Todas':^20} {green}==>"
         + f" {blue}{'*':^20}{color_reset}")
-    print(f"{green}{'='*45}{color_reset}\n")
+    print(f" {green}{'='*45}{color_reset}\n")
 
     print(
-        f"{red}Si deseas {blue}reiniciar {red}varias sucursales separa por "
+        f" {red}Si deseas {blue}reiniciar {red}varias sucursales separa por "
         + f"{blue}coma {green}','{color_reset}")
     print(f"\t{blue}Example:{green} 0, 3, 5{color_reset}\n")
     print(
-        f"{red}Si deseas un {blue}rango {red}utiliza {green}'-'{color_reset}")
+        f" {red}Si deseas un {blue}rango {red}utiliza {green}'-'{color_reset}")
     print(f"\t{blue}Example:{green} 1-3, 5{color_reset}\n")
-    print(f"{red}Para {blue}Todas {red}las sucursales {green}'Inicial-Final'")
+    print(f" {red}Para {blue}Todas {red}las sucursales {green}'Inicial-Final'")
     fin = len(sucursales_list) - 1
     print(f"\t{blue}Example: {green}0-{fin}{color_reset}\n")

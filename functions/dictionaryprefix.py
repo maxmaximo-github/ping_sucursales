@@ -65,7 +65,7 @@ def dictionary_prefix(creacion_prefijos, sucursales_list):
                 sucursales_inexistentes.append(no_sucursal)
 
         print(f" {green}{'='*66}")
-        print(f" {red_blink} {('Precaucion '*6):^40}")
+        print(f" {blue_blink} {('Precaucion '*6):^40}")
         print(f" {green}{'='*66}")
         print(
             f" {red}El programa {green}NO REALIZARA ACTIVIDAD"
