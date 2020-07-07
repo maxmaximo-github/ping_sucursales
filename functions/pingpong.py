@@ -15,8 +15,10 @@ __maintainer__ = "Cesar Rodriguez"
 __email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
 
+
 import os
 import subprocess
+from os import name
 
 
 # Colores para impresion de pantalla.
@@ -40,23 +42,35 @@ def ping_pong(ip):
     Si el resultado es exitoso se guarda en un archivo de texto, de no ser asi
     sino solo se anuncia que no tiene conectividad.
     """
-    reply = subprocess.call(
-        f"ping -c 3 {ip}",
-        shell=True,
-        stdout=open('/dev/null', 'w'),
-        stderr=subprocess.STDOUT
-        )
+    if name == "nt":
+        reply = os.popen(f"ping {ip} -n 4").read()
 
-    if reply == 0:
-        print(
-            f"    {red}El Telefono {green}IPv4 {blue}{ip} {red}esta vivo. "
-            + f"{blue}({green_blink}Ping Success!!!!{blue}){color_reset}")
+        if "Received = 4" and "Approximate" in reply:
+            print(
+                f"    {red}El Telefono {green}IPv4 {blue}{ip} {red}esta vivo. "
+                + f"{blue}({green_blink}Ping Success!!!!{blue}){color_reset}")
 
-        directory = os.getcwd()
-        f = open(file=f"{directory}/tmp/{ip}", mode="w")
-        f.write(f"{ip}")
-        f.close()
+            directory = os.getcwd()
+            f = open(file=f"{directory}/tmp/{ip}", mode="w")
+            f.write(f"{ip}")
+            f.close()
 
+    else:
+        reply = subprocess.call(
+            f"ping -c 3 {ip}",
+            shell=True,
+            stdout=open('/dev/null', 'w'),
+            stderr=subprocess.STDOUT)
+
+        if reply == 0:
+            print(
+                f"    {red}El Telefono {green}IPv4 {blue}{ip} {red}esta vivo. "
+                + f"{blue}({green_blink}Ping Success!!!!{blue}){color_reset}")
+
+            directory = os.getcwd()
+            f = open(file=f"{directory}/tmp/{ip}", mode="w")
+            f.write(f"{ip}")
+            f.close()
     # else:
     #    print(
     #        f" {red_blink}El Telefono IPv4 con {green}{ip} "
