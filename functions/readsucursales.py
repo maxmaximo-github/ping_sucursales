@@ -1,4 +1,11 @@
 #!/usr/bin/env  python3
+# -*- coding: utf-8 -*-
+"""
+This script is create for ping IPv4.
+
+It seems that it has to have THIS docstring with a summary line, a blank line
+and sume more text like here. Wow.
+"""
 __author__ = "Cesar Rodriguez"
 __copyright__ = "Copyright 2020, Reboot IPv4 Phones"
 __credits__ = ["Cesar Rodriguez"]
@@ -13,6 +20,14 @@ import os
 
 
 def sucursales():
+    """
+    Funcion para testear IPv4.
+
+    Esta funcion realiza el testeo de Ping.
+
+    Si el resultado es exitoso se guarda en un archivo de texto, de no ser asi
+    sino solo se anuncia que no tiene conectividad.
+    """
     directory = os.getcwd()
     sucursales_list = []
     for line in open(file=f"{directory}/sucursales/sucursales.txt", mode="r"):
