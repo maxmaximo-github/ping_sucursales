@@ -87,5 +87,5 @@ def ssh_alive(ip):
 
     except SSHException:
         print(
-            f"{green}Canal cerrado, {red}ocurrio un error en la conexion"
-            + f" con {green}{ip}{color_reset}")
+            f"   {blue}Canal cerrado{red}, ocurrio un {green}error {red}en la "
+            + f"{green}conexion {red}con {green}{ip}{color_reset}")
