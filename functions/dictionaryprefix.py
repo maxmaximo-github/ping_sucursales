@@ -33,19 +33,18 @@ green_blink = "\x1b[00;00;5;092m"
 def dictionary_prefix(creacion_prefijos, sucursales_list):
     """
     Funcion para crear los dictionarios.
+
+    Esta funcion crea los indices necesario para el manejo de las sucursales
+    a traves del menu.
     """
     try:
         dictionary_prefijos = []
         for prefijo in creacion_prefijos:
-            # print(type(prefijo))
 
             dict_sucursal = sucursales_list[prefijo]
-            # print(dict_sucursal)
             tmp_prefijo = dict_sucursal["Prefijo"]
             tmp_prefijo = tmp_prefijo.split(".")
             tmp_prefijo = ".".join(tmp_prefijo[0:3])
-            # print(tmp_prefijo)
-            # print(type(tmp_prefijo))
 
             name_sucursal = dict_sucursal["Sucursal"]
 
@@ -55,11 +54,15 @@ def dictionary_prefix(creacion_prefijos, sucursales_list):
                 tmp_ip_list.append(f"{tmp_prefijo}.{ip}")
 
             dictionary_list[name_sucursal] = tmp_ip_list
-            # print(type(dictionary_list))
             dictionary_prefijos.append(dictionary_list)
 
     except IndexError:
         clean_screen()
+
+        sucursales_inexistentes = []
+        for no_sucursal in creacion_prefijos:
+            if no_sucursal > len(sucursales_list)-1:
+                sucursales_inexistentes.append(no_sucursal)
 
         print(f"{green}{'='*60}")
         print(f"{red_blink} {('Precaucion '*5):^40}")
@@ -68,10 +71,7 @@ def dictionary_prefix(creacion_prefijos, sucursales_list):
             f"{red}El programa {green}NO REALIZARA ACTIVIDAD"
             + f" {red}en las siguientes sucursales")
         print(f"{red}debido a lo siguiente:{color_reset} \n")
-        print(
-            f"{red}Las siguientes sucursales no existen: \n"
-            + f"{green}{creacion_prefijos}{color_reset}\n")
-        # print(f"Ingresaste un valor de sucursales inexistentes.\n\n")
-        # print(f"{creacion_prefijos}")
+        print(f"{red}Las siguientes sucursales no existen: ")
+        print(f"\t\t{green}{sucursales_inexistentes}{color_reset}\n")
 
     return dictionary_prefijos
