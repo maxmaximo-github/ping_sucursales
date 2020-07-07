@@ -16,9 +16,9 @@ __email__ = "cesarrodriguez@gmail.com"
 __status__ = "Development"
 
 
-import time
 from functions.createtmpfolder import create_tmpfolder
 from functions.cleanscreen import clean_screen
+from functions.countdown import count_down
 from functions.dictionaryprefix import dictionary_prefix
 from functions.createprefix import create_prefix
 from functions.menusucursales import menu_sucursales
@@ -60,17 +60,21 @@ def main():
 
     # Obtener esctructura de datos para el menu
     sucursales_list = sucursales()
+    # print(sucursales_list)
 
     # Impresion de pantalla el menu con sus sucursales y prefijos.
     menu_sucursales(sucursales_list)
 
     try:
         creacion_prefijos = create_prefix()
-        print(creacion_prefijos)
+        # Limpiar pantalla
+        clean_screen()
+        # print(creacion_prefijos)
 
         dictionary_prefijos = dictionary_prefix(
                                         creacion_prefijos, sucursales_list
                                         )
+        # print(dictionary_prefijos)
 
         for index in dictionary_prefijos:
             dictionary_sucursal = index
@@ -79,17 +83,22 @@ def main():
                 # print(key, len(value))
 
                 # Impresion de formato para la terminal
-                print(f" {green}{'='*66}{color_reset}")
+                print(f" {green}{'='*66}{color_reset}\n")
                 print(
-                    f" {blue}Realizando {green}PING {blue}a los Telefonos"
-                    + f" de {green}'{key}'{color_reset}")
-                print(f" {green}{'='*66}{color_reset}")
+                    f"\t {blue}Conectando {red}con la sucursal "
+                    + f"{green}'{key}'\n")
+                print(f"{red}{'*'*55:^66}{color_reset} ")
+                print(
+                    f"      {blue}Realizando {green}PING "
+                    + f"{blue}a los {red}Telefonos de"
+                    + f" {green}'{key}' {color_reset}\n")
+                # print(f" {green}{'='*66}{color_reset}")
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por
                 # ping
                 thread_config(ping_pong, value)
                 # Impresion de formato para la terminal.
-                print(f" {green}{'='*66}{color_reset}\n")
+                print(f"{red}{'*'*55:^66}{color_reset} ")
 
                 # Leer los archivos de los dispositivos que se encuentran
                 # activos.
@@ -99,47 +108,52 @@ def main():
                 remover_files()
 
                 # Impresion de formato para la terminal
-                print(f"\n {green}{'='*66}{color_reset} ")
+                print(f"\n{red}{'*'*55:^66}{color_reset} ")
                 print(
-                    f" {red}{'*'*19}{blue} Probando conectividad SSH "
-                    + f"{red}{'*'*19}{color_reset}")
-                print(f" {green}{'='*66}{color_reset} ")
+                    f"\t{blue} Probando {red}conectividad "
+                    + f"{green}SSH {red}con {green}'{key}' {color_reset}\n")
+                # print(f" {green}{'='*66}{color_reset} ")
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por SSH
                 thread_config(ssh_alive, devices_ssh)
                 # Impresion de formato para la terminal
-                print(f" {green}{'='*66}{color_reset}\n")
+                print(f"{red}{'*'*55:^66}{color_reset} ")
 
                 # Leer los archivos de los dispositivos que se encuentran
                 # activos SSH.
                 devices_configuration = read_files()
 
                 # Impresion de formato para la terminal
-                print(f"\n {green}{'='*66}{color_reset} ")
+                print(f"\n{red}{'*'*55:^66}{color_reset} ")
                 print(
-                    f" {red}{'*'*19}{blue} Probando Reiniciando Telefonos "
-                    + f"{red}{'*'*19}{color_reset}")
-                print(f" {green}{'='*66}{color_reset} ")
+                    f"\t\t{blue} Reiniciando Telefonos "
+                    + f"{green}'{key}'{color_reset}")
+                # print(f" {green}{'='*66}{color_reset} ")
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por SSH
                 thread_config(restart_phone, devices_configuration)
                 # Impresion de formato para la terminal
-                print(f" {green}{'='*66}{color_reset}\n")
+                print(f"{red}{'*'*55:^66}{color_reset} ")
+                print(f" {green}{'='*66}{color_reset}\n\n\n")
 
                 # Limpiar archivos de la carpeta temporal para la siguiente
                 # ejecution.
                 remover_files()
 
         # Impresion de formato para la terminal.
-        print(f" {green}{'='*66}{color_reset}\n")
+        print(f" {green}{'='*66}")
         print(
-            f" {blue}Esperando que {green}reinicien los {blue}a los Telefonos"
-            + f"{color_reset}")
-        # Impresion de formato para la terminal.
-        print(f" {green}{'='*66}{color_reset}\n")
+            f"  {red}Esperando {green}reinicio {red}para comprobar"
+            + f" la {green}conectividad {red}con "
+            + f"{green}Telefonos.{green_blink}")
 
-        # Tiempo de espera para realizacion pruebas de conectividad.
-        time.sleep(120)
+        count_down(minutes=0, seconds=10)
+
+        # Impresion de formato para la terminal.
+        print(f" {green}{'='*66}\n\n\n")
+
+        # minutes = 2
+        # seconds = 0
 
         # Realizar ping nuevamente para determinar que los telefonos
         # Ya son disponibles
@@ -149,22 +163,27 @@ def main():
             for (key, value) in dictionary_sucursal.items():
                 # print(key, len(value))
 
-                # Impresion de formato para la terminal
-                print(f" {green}{'='*66}{color_reset}")
+                print(f" {green}{'='*66}{color_reset}\n")
                 print(
-                    f" {blue}Realizando {green}PING {blue}a los Telefonos"
-                    + f" de {green}'{key}'{color_reset}")
-                print(f" {green}{'='*66}{color_reset}")
+                    f"\t {blue}Conectando {red}con la sucursal "
+                    + f"{green}'{key}'\n")
+                print(f"{red}{'*'*55:^66}{color_reset} ")
+                print(
+                    f"      {blue}Realizando {green}PING "
+                    + f"{blue}a los {red}Telefonos de"
+                    + f" {green}'{key}' {color_reset}\n")
+                # print(f" {green}{'='*66}{color_reset}")
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por
                 # ping
                 thread_config(ping_pong, value)
                 # Impresion de formato para la terminal.
+                print(f"{red}{'*'*55:^66}{color_reset} ")
                 print(f" {green}{'='*66}{color_reset}\n")
 
     except KeyboardInterrupt:
         print(
-            f"\n\n{red}Has detenido el {green}programa {red}con el teclado.")
+            f"\n\n\t{red}Has detenido el {green}programa {red}con el teclado.")
 
     except UnboundLocalError:
         print(f"{green}{'Fin del programa.':^40}{color_reset}\n\n")
