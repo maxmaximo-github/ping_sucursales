@@ -177,6 +177,10 @@ def main():
                 print(f"{red}{'*'*55:^66}{color_reset} ")
                 print(f" {green}{'='*66}{color_reset}")
 
+                # Limpiar archivos de la carpeta temporal para la siguiente
+                # ejecution.
+                remover_files()
+
     except KeyboardInterrupt:
         print(
             f"\n\n\t{red}Has detenido el {green}programa {red}con el teclado.")
