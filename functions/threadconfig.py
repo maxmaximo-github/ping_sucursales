@@ -30,7 +30,7 @@ green = "\x1b[00;00;01;092m"
 green_blink = "\x1b[00;00;5;092m"
 
 
-def thread_config(function, ip_list):
+def thread_configping(function, ip_list):
     """
     Funcion para la ejecucion de hilos para la configuracion simultanea.
 
@@ -42,6 +42,54 @@ def thread_config(function, ip_list):
 
         for ip in ip_list:
             th = threading.Thread(target=function, args=(ip,))
+            th.start()
+            threads.append(th)
+
+        for th in threads:
+            th.join()
+
+    except KeyboardInterrupt as error:
+        print(
+            f"\t   {red}Cancelaste la operacion {green}{ip} {error}")
+
+
+def thread_configparamiko(function, ip_list, data_info):
+    """
+    Funcion para la ejecucion de hilos para la configuracion simultanea.
+
+    Realiza multiples conexiones creando hilos para dicha tarea.
+    Para quitar los mensajes de los demas.
+    """
+    data_info = data_info
+    try:
+        threads = []
+
+        for ip in ip_list:
+            th = threading.Thread(target=function, args=(ip, data_info))
+            th.start()
+            threads.append(th)
+
+        for th in threads:
+            th.join()
+
+    except KeyboardInterrupt as error:
+        print(
+            f"\t   {red}Cancelaste la operacion {green}{ip} {error}")
+
+
+def thread_configssh(function, ip_list, data_info):
+    """
+    Funcion para la ejecucion de hilos para la configuracion simultanea.
+
+    Realiza multiples conexiones creando hilos para dicha tarea.
+    Para quitar los mensajes de los demas.
+    """
+    data_info = data_info
+    try:
+        threads = []
+
+        for ip in ip_list:
+            th = threading.Thread(target=function, args=(ip, data_info))
             th.start()
             threads.append(th)
 
