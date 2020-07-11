@@ -15,8 +15,9 @@ __maintainer__ = "Cesar Rodriguez"
 __email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
 
-import os
-import glob
+
+from glob import glob
+from os import getcwd
 
 
 def read_files():
@@ -27,9 +28,9 @@ def read_files():
     los dispositivos que tuvieron exito a la hora de realizar la prueba de
     ping.
     """
-    directory = os.getcwd()
+    directory = getcwd()
     devices_alive = []
-    for file_name in glob.glob(f"{directory}/tmp/*"):
+    for file_name in glob(f"{directory}/tmp/*"):
         with open(file=file_name, mode="r") as f:
             for line in f.readlines():
                 devices_alive.append(line)
