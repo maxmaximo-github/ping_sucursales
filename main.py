@@ -16,19 +16,23 @@ __email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
 
 
+from functions.createprefix import create_prefix
 from functions.createtmpfolder import create_tmpfolder
 from functions.cleanscreen import clean_screen
 from functions.countdown import count_down
 from functions.dictionaryprefix import dictionary_prefix
-from functions.createprefix import create_prefix
+from functions.loginscreen import login_screen
 from functions.menusucursales import menu_sucursales
 from functions.pingpong import ping_pong
+from functions.readdatalogin import read_datalogin
 from functions.readfiles import read_files
 from functions.readsucursales import sucursales
 from functions.remover import remover_files
 from functions.restartphone import restart_phone
 from functions.sshalive import ssh_alive
-from functions.threadconfig import thread_config
+from functions.threadconfig import thread_configping
+from functions.threadconfig import thread_configssh
+from functions.threadconfig import thread_configparamiko
 
 
 # Colores para impresion en pantalla.
@@ -74,6 +78,13 @@ def main():
                                         creacion_prefijos, sucursales_list
                                         )
 
+        # Pedir contrasena para los telefonos
+        login_screen()
+
+        data_info = read_datalogin()
+
+        remover_files()
+
         for index in dictionary_prefijos:
             dictionary_sucursal = index
 
@@ -92,7 +103,7 @@ def main():
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por
                 # ping
-                thread_config(ping_pong, value)
+                thread_configping(ping_pong, value)
                 # Impresion de formato para la terminal.
                 print(f"{red}{'*'*55:^66}{color_reset} ")
 
@@ -111,7 +122,7 @@ def main():
 
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por SSH
-                thread_config(ssh_alive, devices_ssh)
+                thread_configssh(ssh_alive, devices_ssh, data_info)
 
                 # Impresion de formato para la terminal
                 print(f"{red}{'*'*55:^66}{color_reset} ")
@@ -128,7 +139,8 @@ def main():
 
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por SSH
-                thread_config(restart_phone, devices_configuration)
+                thread_configparamiko(
+                    restart_phone, devices_configuration, data_info)
                 # Impresion de formato para la terminal
                 print(f"{red}{'*'*55:^66}{color_reset} ")
                 print(f" {green}{'='*66}{color_reset}\n\n\n")
@@ -146,7 +158,7 @@ def main():
 
         # Llamada a la funcion count_down y pasarle argumentos con valores
         # de ejemplo minutos=2 y segundo=0
-        count_down(minutes=0, seconds=5)
+        count_down(minutes=0, seconds=20)
 
         # Impresion de formato para la terminal.
         print(f" {green}{'='*66}\n\n\n")
@@ -171,7 +183,7 @@ def main():
                 # Llamada a la funcion "thread_config" para la creacion de los
                 # hilos y determinar que dispositivos son alcanzados por
                 # ping
-                thread_config(ping_pong, value)
+                thread_configping(ping_pong, value)
 
                 # Impresion de formato para la terminal.
                 print(f"{red}{'*'*55:^66}{color_reset} ")
