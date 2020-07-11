@@ -26,7 +26,7 @@ green = "\x1b[00;00;1;092m"
 blue = "\x1b[00;00;1;034m"
 
 
-def restart_phone(ip):
+def restart_phone(ip, data_info):
     """
     Funcion para reiniciar los telefonos de la sucursal en turno..
 
@@ -34,8 +34,7 @@ def restart_phone(ip):
     ser alcanzados por SSH utilizando la libreria 'Paramiko'.
     """
     # ip_address = ip
-    username = "admin"
-    password = "hyc.2016!Trc"
+    username, password = data_info
 
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -51,6 +50,11 @@ def restart_phone(ip):
 
     time.sleep(1)
     output = remote_connection.recv(65535)
-    print(output)
+    output = str(output)
+
+    if "Welcome" in output:
+        print(
+            f"\t{green}Rebooting {blue}Grandstream GXP2135"
+            + f" {red}with {green}{ip}.")
 
     ssh_client.close()
