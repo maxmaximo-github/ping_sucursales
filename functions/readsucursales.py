@@ -16,7 +16,7 @@ __email__ = "cesarrodriguezpadilla@gmail.com"
 __status__ = "Development"
 
 
-import os
+from os import getcwd
 
 
 def sucursales():
@@ -28,7 +28,7 @@ def sucursales():
     Si el resultado es exitoso se guarda en un archivo de texto, de no ser asi
     sino solo se anuncia que no tiene conectividad.
     """
-    directory = os.getcwd()
+    directory = getcwd()
     sucursales_list = []
     for line in open(file=f"{directory}/sucursales/sucursales.txt", mode="r"):
         data_info_list = line.strip("\n").split(", ")
