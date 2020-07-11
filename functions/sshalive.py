@@ -34,18 +34,21 @@ green = "\x1b[00;00;01;092m"
 green_blink = "\x1b[00;00;5;092m"
 
 
-def ssh_alive(ip):
+def ssh_alive(ip, data_info):
     """
     Funcion para establecer que dispositivos son alcanzados por SSH.
 
     Esta funcion realiza una conexion SSH a los dispositivos, si es exitosa,
     guarda el resultado en un archivo para su posterior tratamiento.
     """
+    # Pasar usuario y contrasena
+    username, password = data_info
+
     ipv4_phone = {
                 "device_type": "generic_termserver",    # Tipo de dispositivo.
                 "ip": ip,                               # IP Address.
-                "username": "admin",                    # Nombre de Usuario.
-                "password": "(@Esperanza86)*"           # Password de usuario.
+                "username": username,                   # Nombre de Usuario.
+                "password": password                    # Password de usuario.
                 }
 
     try:
@@ -54,8 +57,8 @@ def ssh_alive(ip):
 
         if net_connect.is_alive():
             print(
-                f"\t{red}La Conexion {blue}SSH {red}con "
-                + f"{blue}{ip} {red}es {blue}permitida.{color_reset}")
+                f"\t{red}La {green}Conexion SSH {red}con "
+                + f"{green}{ip} {red}es {green}permitida.{color_reset}")
 
             # Obtener el directorio actual
             directory = os.getcwd()
@@ -77,8 +80,8 @@ def ssh_alive(ip):
     except NetMikoTimeoutException:
         # print(error)
         print(
-            f"\t{red}El dispositivo {green}{ip} "
-            + f"{red}no esta {green}disponible.{color_reset}")
+            f"\t{red}El dispositivo {blue}{ip} "
+            + f"{red}no esta {blue}disponible.{color_reset}")
 
     except NetMikoAuthenticationException:
         print(
