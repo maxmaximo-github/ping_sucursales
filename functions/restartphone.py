@@ -51,6 +51,11 @@ def restart_phone(ip):
 
     time.sleep(1)
     output = remote_connection.recv(65535)
-    print(output)
+    output = str(output)
+
+    if "Rebooting" in output:
+        print(
+            f"\t{green}Rebooting {blue}Grandstream GXP2135"
+            + f" {red}with {green}{ip}.")
 
     ssh_client.close()
